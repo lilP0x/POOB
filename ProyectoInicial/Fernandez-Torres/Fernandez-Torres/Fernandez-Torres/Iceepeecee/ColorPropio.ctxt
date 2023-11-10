@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=ColorPropio
+comment0.text=\r\n\ The\ ColorPropio\ class\ is\ responsible\ for\ generating\ and\ managing\ unique\ colors.\r\n\ It\ provides\ methods\ to\ create\ random\ RGB\ colors\ and\ store\ them,\ as\ well\ as\ translating\r\n\ RGB\ color\ strings\ into\ Color\ objects.\r\n\ \r\n\ Note\:\ It\ uses\ the\ java.awt.Color\ class\ to\ represent\ colors.\r\n
+comment1.params=numero
+comment1.target=ColorPropio(int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ ColorPropio,\ used\ for\ generating\ random\ colors.\r\n\r\n\ @param\ numero\ The\ number\ of\ unique\ colors\ to\ generate.\r\n
+comment2.params=color
+comment2.target=ColorPropio(java.lang.String)
+comment2.text=\r\n\ Constructor\ for\ objects\ of\ class\ ColorPropio,\ used\ for\ translating\ RGB\ color\ strings.\r\n\r\n\ @param\ color\ A\ string\ in\ the\ "RGB"\ format\ representing\ a\ color.\r\n
+comment3.params=
+comment3.target=int[]\ rgbRandom()
+comment3.text=\r\n\ Generates\ a\ random\ RGB\ color.\r\n\r\n\ @return\ An\ array\ of\ integers\ representing\ the\ red,\ green,\ and\ blue\ components\ of\ the\ color.\r\n
+comment4.params=
+comment4.target=java.util.ArrayList\ rgbADD()
+comment4.text=\r\n\ Generates\ a\ list\ of\ unique\ Color\ objects\ with\ a\ specified\ number\ of\ unique\ colors.\r\n\r\n\ @return\ An\ ArrayList\ of\ unique\ Color\ objects.\r\n
+comment5.params=
+comment5.target=java.util.ArrayList\ rgbString()
+comment5.text=\r\n\ Generates\ a\ list\ of\ unique\ RGB\ color\ strings\ with\ a\ specified\ number\ of\ unique\ colors.\r\n\r\n\ @return\ An\ ArrayList\ of\ unique\ RGB\ color\ strings.\r\n
+comment6.params=
+comment6.target=java.awt.Color\ traductor()
+comment6.text=\r\n\ Translates\ an\ RGB\ color\ string\ to\ a\ Color\ object.\r\n\r\n\ @return\ A\ Color\ object\ representing\ the\ RGB\ color.\r\n
+numComments=7

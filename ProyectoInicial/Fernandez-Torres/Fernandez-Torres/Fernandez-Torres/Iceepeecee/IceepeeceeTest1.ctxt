@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=IceepeeceeTest1
+comment0.text=\r\n\ The\ test\ class\ IceepeeceeTest1.\r\n\r\n\ @author\ \ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=IceepeeceeTest1()
+comment1.text=\r\n\ Default\ constructor\ for\ test\ class\ IceepeeceeTest1\r\n
+comment2.params=
+comment2.target=void\ shouldFTAddIslandFERNANDEZTORRES()
+comment2.text=\r\n\ \r\n\ \ \ \ \ \r\n\ \ \ \ @BeforeEach\r\n\ \ \ \ public\ void\ setUpFT()\ {\r\n\ \ \ \ \ \ \ \ int\ width\ \=\ 500;\r\n\ \ \ \ \ \ \ \ int\ height\ \=\ 500;\r\n\ \ \ \ \ \ \ \ i\ \=\ new\ Iceepeecee(width,\ height);\r\n\ \ \ \ \ \ \ \ int[][]\ island1\ \=\ {{45,60},{50,45},{80,67}};\r\n\ \ \ \ \ \ \ \ int[][]\ island2\ \=\ {{100,70},{34,89},{45,89},{90,34}};\r\n\ \ \ \ \ \ \ \ int[][]\ island3\ \=\ {{45,60},{55,60},{60,65},{80,45}};\r\n\ \ \ \ \ \ \ \ int[]\ FligthFrom1\ \=\ {0,\ 30,20};\r\n\ \ \ \ \ \ \ \ int[]\ FligthTo1\ \=\ {78,70,5};\r\n\ \ \ \ \ \ \ \ int[]\ FligthFrom2\ \=\ {55,\ 0,20};\r\n\ \ \ \ \ \ \ \ int[]\ FligthTo2\ \=\ {70,60,10};\r\n\ \ \ \ \ \ \ \ String\ color1\ \=\ "green";\r\n\ \ \ \ \ \ \ \ String\ color2\ \=\ "red";\r\n\ \ \ \ \ \ \ \ String\ color3\ \=\ "blue";\r\n\ \ \ \ \ \ \ \ String\ color4\ \=\ "magenta";\r\n\ \ \ \ \ \ \ \ i.addIsland(color1,\ island1);\r\n\ \ \ \ \ \ \ \ i.addIsland(color2,\ island2);\r\n\ \ \ \ \ \ \ \ i.addIsland(color3,\ island3);\r\n\ \ \ \ \ \ \ \ i.addFligth(color1,\ FligthFrom1,\ FligthTo1);\r\n\ \ \ \ \ \ \ \ i.addFligth(color2,\ FligthFrom2,\ FligthTo2);\r\n\ \ \ \ }\r\n
+comment3.params=
+comment3.target=void\ shouldFTAddIslandTypeFERNANDEZTORRES()
+numComments=4

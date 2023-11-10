@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Surprising
+comment0.text=\r\n\ The\ Surprising\ class\ represents\ a\ surprising\ island\ object\ with\ a\ polygonal\ shape.\r\n\ It\ extends\ the\ Island\ class\ and\ stores\ information\ about\ the\ island's\ color,\ \r\n\ position\ vertices,\ and\ visibility\ status.\ Surprising\ islands\ have\ a\ special\ behavior\r\n\ when\ their\ location\ is\ queried\:\ they\ temporarily\ remove\ a\ vertex\ before\ providing\r\n\ the\ updated\ location.\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=color\ polygon
+comment1.target=Surprising(java.lang.String,\ int[][])
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Surprising.\r\n\r\n\ @param\ color\ The\ color\ of\ the\ Surprising\ island\ object.\r\n\ @param\ polygon\ A\ two-dimensional\ array\ representing\ the\ vertices\ of\ the\ island's\ polygon.\r\n
+comment2.params=
+comment2.target=int[][]\ islandLocation()
+comment2.text=\r\n\ Gets\ the\ location\ of\ the\ Surprising\ island\ as\ a\ two-dimensional\ array.\r\n\r\n\ If\ the\ island\ is\ currently\ visible,\ it\ temporarily\ removes\ a\ vertex\ before\r\n\ providing\ the\ updated\ location\ with\ one\ vertex\ removed.\r\n\r\n\ @return\ A\ two-dimensional\ array\ representing\ the\ location\ of\ the\ Surprising\ island.\r\n
+comment3.params=vertex
+comment3.target=int[][]\ delVertex(int[][])
+comment3.text=\r\n\ Helper\ method\ to\ remove\ a\ vertex\ from\ the\ island's\ location.\r\n\r\n\ @param\ vertex\ The\ original\ vertices\ of\ the\ island.\r\n\ @return\ A\ new\ array\ of\ vertices\ with\ one\ vertex\ removed.\r\n
+comment4.params=
+comment4.target=void\ del()
+comment4.text=\r\n\ Deletes\ the\ Surprising\ island\ by\ making\ it\ invisible\ on\ the\ canvas\ window.\r\n
+numComments=5

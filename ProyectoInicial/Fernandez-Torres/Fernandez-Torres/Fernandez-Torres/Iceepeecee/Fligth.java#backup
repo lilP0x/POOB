@@ -1,0 +1,115 @@
+import java.util.ArrayList;
+import java.awt.geom.Line2D;
+/**
+ * The Flight class represents a flight object that extends the Triangle class.
+ * It stores information about the flight's color, departure, and destination points.
+ * @author Maria Torres , Juan Fernandez 
+ * @version 1.5 23/09/2023
+ */
+public class  Fligth  
+{
+    private ArrayList<Line> fTrack = new ArrayList();
+    private int[] positionX,positionY,from,to,iPosition,fPosition;
+    private double xPosition,yPosition,widthc,heigthc;
+    private String color;
+    private Triangle plane;
+    private Line line;
+    private boolean isVisible;
+    
+    
+     /**
+     * Constructor for objects of class Flight.
+     *
+     * @param color The color of the Flight object.
+     * @param from  An integer array representing the departure location.
+     * @param to    An integer array representing the destination location.
+     */
+    public Fligth(String color, int[] from, int[] to)
+    {
+        plane = new Triangle(color, from, to);
+        this.color = color;
+        fPosition = to;
+        iPosition= from;
+        line = new Line(from[0],from[1],to[0],to[1],color);
+    }
+    
+        /**
+     * Takes a photograph at a specified angle with a given color.
+     * @param teta The angle at which to take the photograph.
+     * @param color The color of the photograph.
+     */
+    public void photograph(int teta, String color) {
+        Photograph photograph = (new Photograph(teta, iPosition, fPosition, color));
+    }
+    
+        /**
+     * Takes a photograph at a specified angle with a given color.
+     * @param teta The angle at which to take the photograph.
+     * @param color The color of the photograph.
+     */
+    public void photograph(float teta, String color) {
+        Photograph photograph = (new Photograph(teta, iPosition, fPosition, color));
+    }
+    
+    
+    /**
+     * Gets the location of the photograph's starting position.
+     * @return An array containing the X, Y, and height coordinates of the starting position.
+     */
+    public int[] getLocation() {
+        return fPosition;
+    }
+
+    
+    /**
+     * Leaves the track of the movement of the fligth
+     * @Parameters int[] position, boolean error, int x, int y
+     * @Return
+     */
+    public void recorridefligth(int[] from,int[] to){       
+        Line line = new Line(from[0],from[1],to[0],to[1],color);
+    }
+    
+    public void makeVisible(){
+        plane.makeVisible();
+        line.makeVisible();
+    }
+    
+    public boolean getVisible(){
+        isVisible = plane.getVisible();
+        return isVisible;
+    }    
+    
+    /**
+     * Sets the visibility status of the object.
+     *
+     * @param state True to make the object visible, false to make it invisible.
+     */
+    public void setVisible(boolean state) {
+        plane.setVisible(state);
+    }
+    
+    public void makeInvisible(){
+        plane.makeInvisible();
+        line.makeInvisible();
+    }
+    
+        /**
+     * Retrieves the flight's location as a two-dimensional array.
+     *
+     * @return A two-dimensional array representing the location of the flight.
+     *         Each row contains a pair of X and Y coordinates.
+     */
+    public int[][] fligthLocation(){
+        int[][] matriz = new int[positionX.length][2];
+        for (int i = 0; i < positionX.length; i++){
+            matriz[i][0] = positionX[i];
+            matriz[i][1] = positionY[i];
+        }
+        return matriz;
+    }
+    
+    public String getColor(){
+        return color;
+    }
+}

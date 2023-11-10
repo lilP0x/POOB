@@ -1,0 +1,46 @@
+Juan Pablo 
+
+island 1 = {{35,50},{50,65},{80,67}}
+blue
+Normal
+
+island 2 = {{100,70},{34,89},{45,89},{90,34}}
+magenta
+Fixed
+
+island 3 = {{35,67},{50,60},{60,69},{80,45}}
+red
+Surprising
+
+island 4 = {{40,70},{50,60},{80,65},{20,45}}
+yellow
+Fixed
+
+Valentina 
+
+ISLAS QUE DEJA INSETAR
+
+island 1 = {{60,100},{40,140},{80,180},{100,120}}
+"green"
+"Fixed"
+--Isla que comparte un vertice con otra
+island 5 = {{27,75},{15,58},{30,50}}
+"yellow"
+"Fixed"
+
+island 2 =  {{20,20},{40,30},{30,50}}
+"blue"
+"Normal"
+
+--Isla que aunque es sorprising no cambia
+
+island 3 = {{150,85},{157,110},{160,95}}
+"magenta"
+"Surprising"
+
+
+island 4 = {{130,30},{110,20},{80,10},{90,30},{100,60},{120,50}}
+"red"
+"Surprising"
+
+

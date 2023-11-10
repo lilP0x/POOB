@@ -1,0 +1,5 @@
+excepciones:
+
+numeros negativos
+posiciones por fuera del tablero
+posiciones no continuas

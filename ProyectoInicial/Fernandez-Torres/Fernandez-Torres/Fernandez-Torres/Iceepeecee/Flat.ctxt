@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Flat
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Flat\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=color\ from\ to
+comment1.target=Flat(java.lang.String,\ int[],\ int[])
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Flat\r\n
+comment2.params=
+comment2.target=void\ makeVisible()
+comment2.text=\r\n\ Makes\ the\ plane\ and\ line\ objects\ visible\ on\ the\ canvas\ window.\r\n\ This\ method\ sets\ the\ visibility\ status\ of\ both\ the\ plane\ and\ line\ objects\ to\r\n\ true,\ making\ them\ invisible\ on\ the\ canvas\ window.\r\n
+comment3.params=
+comment3.target=boolean\ getVisible()
+comment3.text=\r\n\ Retrieves\ the\ visibility\ status\ of\ the\ objects.\r\n\ This\ method\ gets\ the\ visibility\ status\ of\ the\ plane\ object\ and\ returns\ it.\r\n\r\n\ @return\ True\ if\ the\ plane\ object\ is\ currently\ visible,\ false\ otherwise.\r\n
+comment4.params=state
+comment4.target=void\ setVisible(boolean)
+comment4.text=\r\n\ Sets\ the\ visibility\ status\ of\ the\ object.\r\n\r\n\ @param\ state\ True\ to\ make\ the\ object\ visible,\ false\ to\ make\ it\ invisible.\r\n
+comment5.params=
+comment5.target=void\ makeInvisible()
+comment5.text=\r\n\ Makes\ the\ plane\ and\ line\ objects\ invisible\ on\ the\ canvas\ window.\r\n\ This\ method\ sets\ the\ visibility\ status\ of\ both\ the\ plane\ and\ line\ objects\ to\r\n\ false,\ making\ them\ invisible\ on\ the\ canvas\ window.\r\n
+numComments=6
