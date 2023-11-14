@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
+
 public class VintageGUI extends JFrame{
 	public VintageGUI(){
 		prepareElements();
@@ -25,20 +26,16 @@ public class VintageGUI extends JFrame{
 	private void prepareElementsMenu(){
 		JButton nuevaPartida = new JButton("Nueva partida");
 		JButton continuar = new JButton("Continuar");
-		BufferedImage logo = ImageIO.read(new File("/resursos/colorful-candy-background-vector.jpg"));
-        JLabel label = new JLabel(new ImageIcon(logo));
-		add(label);
-		add(nuevaPartida);
-		add(continuar);
+		setLayout(new BorderLayout());
+		//BufferedImage logo = ImageIO.read(new File("/resursos/colorful-candy-background-vector.jpg"));
+        //JLabel label = new JLabel(new ImageIcon(logo));
+		//add(label);
+		add(nuevaPartida,BorderLayout.NORTH);
+		add(continuar,BorderLayout.SOUTH);
 	}
 
 	private void prepareActions(){
-		ActionListener oyenteDeSalida;
-		oyenteDeSalida = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				exitApp();
-			}
-		};
+
 
 		WindowAdapter oyenteDeSalidaW;
         oyenteDeSalidaW = new WindowAdapter() {
@@ -46,8 +43,7 @@ public class VintageGUI extends JFrame{
                 exitWindow();
             }
         };
-		this.addWindowListener(oyenteDeSalidaW);
-		
+		this.addWindowListener(oyenteDeSalidaW);		
 	}
 
 	private void exitApp(){
