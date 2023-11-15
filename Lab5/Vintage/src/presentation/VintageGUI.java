@@ -5,21 +5,18 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 
 public class VintageGUI extends JFrame{
 
-	JMenuItem salir,salvar,abrir;
+	JMenuItem salir,salvar,abrir,nuevo;
 	JMenu opciones;
 	JMenuBar menu;
 	JFileChooser fileChooser;
 	JPanel[][] board;
-	JPanel padre;
-	JPanel padre2;
 	JButton cambiarBoton, continuar, nuevaPartida;
+	JPanel padre, padre2;
 	
 
 	public VintageGUI(){
@@ -30,35 +27,45 @@ public class VintageGUI extends JFrame{
 		VintageGUI vintage = new VintageGUI(); 
 		vintage.setVisible(true);
 	}
-	private void prepareElements(){
-		padre = new JPanel();
-		padre2 = new JPanel();
+	private void prepareElements() {
 		setTitle("Vintage");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(new Dimension(dimension.width / 2, dimension.height / 2));
+		setSize(new Dimension(dimension.width / 2, dimension.height / 2));
 		setLocationRelativeTo(null);
-		nuevaPartida = new JButton("Nueva partida");
-		continuar = new JButton("Continuar");
-		cambiarBoton = new JButton("Cambiar Pantalla");
-		setLayout(new BorderLayout());
-		padre.setLayout(new GridLayout(3,3));
-		padre.add(nuevaPartida);
-		padre.add(continuar);
-		padre.add(cambiarBoton);
-		add(padre,BorderLayout.CENTER);
-		add(padre2,BorderLayout.CENTER);
+	
+		JPanel panelArriba = preparePanelArriba();
+		JPanel panelAbajo = preparePanelAbajo();
+	
+	
 		prepareElementsMenu();
 		prepareElementsBoard();
+	
+		setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(10, 10, 10, 10);
+		// Configurar GridBagConstraints para el primer panel
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		
+		add(panelArriba, gbc);
+	
+		// Configurar GridBagConstraints para el botón cambiarBoton
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		add(panelAbajo, gbc);
 
-	}
+        
+    }
 	private void prepareElementsMenu(){
 		
 		menu = new JMenuBar();
 		opciones = new JMenu("opciones");
 		abrir= new JMenuItem("abrir");
+		nuevo = new JMenuItem("nuevo");
 		salvar = new JMenuItem("salvar");
 		salir = new JMenuItem("salir");
 		fileChooser = new JFileChooser();
+		opciones.add(nuevo);
 		opciones.add(abrir);
 		opciones.add(salvar);
 		opciones.add(salir);
@@ -72,6 +79,7 @@ public class VintageGUI extends JFrame{
 	}
 
 	private void prepareElementsBoard(){
+		JPanel padre = new JPanel();
 		board = new JPanel[8][8];
 		for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -80,6 +88,45 @@ public class VintageGUI extends JFrame{
             }
         }
 
+	}
+
+	private JPanel preparePanelAbajo(){
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.insets = new Insets(1, 0, 1, 0); // Espacio vertical entre los componentes
+
+        nuevaPartida = new JButton("Nuevo juego");
+        nuevaPartida.setFont(new Font("Courier New", Font.PLAIN, 12));
+        nuevaPartida.setBackground(new Color(150, 200, 100));
+        nuevaPartida.setForeground(Color.WHITE);
+        continuar = new JButton("Continuar");
+        continuar.setFont(new Font("Courier New", Font.PLAIN, 12));
+        continuar.setBackground(new Color(150, 200, 100));
+        continuar.setForeground(Color.WHITE);
+
+        panel.add(nuevaPartida, constraints);
+
+        constraints.gridy = 1;
+        panel.add(continuar, constraints);
+
+		return panel;
+	}
+
+	private JPanel preparePanelArriba(){
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.insets = new Insets(1, 0, 1, 0); 
+
+		JLabel titulo = new JLabel("Vintage");
+		panel.add(titulo,constraints);
+
+		return panel;
 	}
 
 	private void refresh(){
@@ -126,13 +173,14 @@ public class VintageGUI extends JFrame{
 		};		
 		salvar.addActionListener(oyenteDeSalvar);
 
-		cambiarBoton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-				cambioDePanel();
-            }
-        });
-
+		ActionListener oyenteDeNuevo;
+		oyenteDeNuevo = new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				
+			}
+		};
+		nuevo.addActionListener(oyenteDeNuevo);
+	
 	}
 
 	private void exitApp(){
