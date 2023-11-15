@@ -5,9 +5,19 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 
 public class VintageGUI extends JFrame{
+
+	JMenuItem salir,salvar,abrir;
+	JMenu opciones;
+	JMenuBar menu;
+	JFileChooser fileChooser;
+	JPanel[][] board;
+
 	public VintageGUI(){
 		prepareElements();
 		prepareActions();
@@ -21,17 +31,48 @@ public class VintageGUI extends JFrame{
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(new Dimension(dimension.width / 2, dimension.height / 2));
 		setLocationRelativeTo(null);
-		prepareElementsMenu();
-	}
-	private void prepareElementsMenu(){
 		JButton nuevaPartida = new JButton("Nueva partida");
 		JButton continuar = new JButton("Continuar");
-		setLayout(new BorderLayout());
+		setLayout(new GridLayout());
+		add(nuevaPartida);
+		add(continuar);
+		prepareElementsMenu();
+		prepareElementsBoard();
+	}
+	private void prepareElementsMenu(){
+		
+		menu = new JMenuBar();
+		opciones = new JMenu("opciones");
+		abrir= new JMenuItem("abrir");
+		salvar = new JMenuItem("salvar");
+		salir = new JMenuItem("salir");
+		fileChooser = new JFileChooser();
+		opciones.add(abrir);
+		opciones.add(salvar);
+		opciones.add(salir);
+		menu.add(opciones);
+		setJMenuBar(menu);
+		prepareActionsMenu();
 		//BufferedImage logo = ImageIO.read(new File("/resursos/colorful-candy-background-vector.jpg"));
         //JLabel label = new JLabel(new ImageIcon(logo));
 		//add(label);
-		add(nuevaPartida,BorderLayout.NORTH);
-		add(continuar,BorderLayout.SOUTH);
+		
+	}
+
+	private void prepareElementsBoard(){
+		board = new JPanel[8][8];
+		for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                board[i][j] = new JPanel(); 
+                add(board[i][j]);
+            }
+        }
+
+	}
+
+	private void refresh(){
+
+
 	}
 
 	private void prepareActions(){
@@ -43,7 +84,36 @@ public class VintageGUI extends JFrame{
                 exitWindow();
             }
         };
-		this.addWindowListener(oyenteDeSalidaW);		
+		this.addWindowListener(oyenteDeSalidaW);
+		
+	}
+
+	private void prepareActionsMenu(){
+
+		ActionListener oyenteDeSalidaApp;
+		oyenteDeSalidaApp = new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+                exitApp();
+            }
+		};		
+		salir.addActionListener(oyenteDeSalidaApp);
+
+		ActionListener oyenteDeAbrir;
+		oyenteDeAbrir = new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+                fileChoiceAbrir();
+            }
+		};		
+		abrir.addActionListener(oyenteDeAbrir);
+
+		ActionListener oyenteDeSalvar;
+		oyenteDeSalvar = new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+                fileChoiceSalvar();
+            }
+		};		
+		salvar.addActionListener(oyenteDeSalvar);
+
 	}
 
 	private void exitApp(){
@@ -55,6 +125,27 @@ public class VintageGUI extends JFrame{
 		} else if (option == JOptionPane.NO_OPTION) {
 
 		}
+	}
+
+	private void fileChoiceAbrir(){
+
+		int result = fileChooser.showOpenDialog(this);
+
+		if (result == JFileChooser.APPROVE_OPTION) {
+            java.io.File selectedFile = fileChooser.getSelectedFile();
+            JOptionPane.showMessageDialog(this, "La funcion esta en desarrollo","Abrir archivo",JOptionPane.INFORMATION_MESSAGE);
+        }
+
+	}
+
+	private void fileChoiceSalvar(){
+
+		int result = fileChooser.showSaveDialog(this);
+
+		if (result == JFileChooser.APPROVE_OPTION) {
+            JOptionPane.showMessageDialog(this, "La funcion esta en desarrollo", "Guardar Archivo", JOptionPane.INFORMATION_MESSAGE);
+        } 
+
 	}
 
 	private void exitWindow(){
