@@ -17,6 +17,10 @@ public class VintageGUI extends JFrame{
 	JMenuBar menu;
 	JFileChooser fileChooser;
 	JPanel[][] board;
+	JPanel padre;
+	JPanel padre2;
+	JButton cambiarBoton, continuar, nuevaPartida;
+	
 
 	public VintageGUI(){
 		prepareElements();
@@ -27,17 +31,25 @@ public class VintageGUI extends JFrame{
 		vintage.setVisible(true);
 	}
 	private void prepareElements(){
+		padre = new JPanel();
+		padre2 = new JPanel();
 		setTitle("Vintage");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(new Dimension(dimension.width / 2, dimension.height / 2));
 		setLocationRelativeTo(null);
-		JButton nuevaPartida = new JButton("Nueva partida");
-		JButton continuar = new JButton("Continuar");
-		setLayout(new GridLayout());
-		add(nuevaPartida);
-		add(continuar);
+		nuevaPartida = new JButton("Nueva partida");
+		continuar = new JButton("Continuar");
+		cambiarBoton = new JButton("Cambiar Pantalla");
+		setLayout(new BorderLayout());
+		padre.setLayout(new GridLayout(3,3));
+		padre.add(nuevaPartida);
+		padre.add(continuar);
+		padre.add(cambiarBoton);
+		add(padre,BorderLayout.CENTER);
+		add(padre2,BorderLayout.CENTER);
 		prepareElementsMenu();
 		prepareElementsBoard();
+
 	}
 	private void prepareElementsMenu(){
 		
@@ -64,7 +76,7 @@ public class VintageGUI extends JFrame{
 		for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 board[i][j] = new JPanel(); 
-                add(board[i][j]);
+                padre.add(board[i][j]);
             }
         }
 
@@ -114,6 +126,13 @@ public class VintageGUI extends JFrame{
 		};		
 		salvar.addActionListener(oyenteDeSalvar);
 
+		cambiarBoton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+				cambioDePanel();
+            }
+        });
+
 	}
 
 	private void exitApp(){
@@ -125,6 +144,22 @@ public class VintageGUI extends JFrame{
 		} else if (option == JOptionPane.NO_OPTION) {
 
 		}
+	}
+
+	private void cambioDePanel(){		
+        // Cambiar entre los paneles al hacer clic en el botón
+		if (getContentPane().getComponent(0) == padre) {
+			getContentPane().remove(padre);
+			getContentPane().add(padre);
+		} else {
+			getContentPane().remove(padre2);
+			getContentPane().add(padre2, BorderLayout.CENTER);
+		}
+
+		// Actualizar la interfaz
+		revalidate();
+		repaint();
+
 	}
 
 	private void fileChoiceAbrir(){
