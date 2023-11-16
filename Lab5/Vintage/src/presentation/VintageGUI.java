@@ -17,7 +17,7 @@ public class VintageGUI extends JFrame{
 	private JMenuBar menu;
 	private JFileChooser fileChooser;
 	private JPanel[][] board;
-	private JButton continuar, nuevaPartida;
+	private JButton continuar, nuevaPartida,volver;
 	private JPanel padre, padre2;
 	private CardLayout cardLayout;
 
@@ -53,6 +53,8 @@ public class VintageGUI extends JFrame{
         padre.add(preparePanelAbajo());
 
 		padre2.add(loLogre);
+		volver = new JButton("volver");
+		padre2.add(volver);
 
         add(padre, "padre");
         add(padre2, "padre2");
@@ -154,6 +156,14 @@ public class VintageGUI extends JFrame{
 			}
 		};
 		nuevaPartida.addActionListener(oyenteDeInicio);
+
+		ActionListener oyenteDeVolver;
+		oyenteDeVolver = new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				cambio();
+			}
+		};	
+		volver.addActionListener(oyenteDeVolver);
 	}
 
 	private void prepareActionsMenu(){
