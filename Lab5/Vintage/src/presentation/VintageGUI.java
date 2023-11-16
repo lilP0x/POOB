@@ -2,6 +2,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.html.parser.ParserDelegator;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -10,13 +12,15 @@ import java.io.File;
 
 public class VintageGUI extends JFrame{
 
-	JMenuItem salir,salvar,abrir,nuevo;
-	JMenu opciones;
-	JMenuBar menu;
-	JFileChooser fileChooser;
-	JPanel[][] board;
-	JButton cambiarBoton, continuar, nuevaPartida;
-	JPanel padre, padre2;
+	private JMenuItem salir,salvar,abrir,nuevo;
+	private JMenu opciones;
+	private JMenuBar menu;
+	private JFileChooser fileChooser;
+	private JPanel[][] board;
+	private JButton continuar, nuevaPartida;
+	private JPanel padre, padre2;
+	private CardLayout cardLayout;
+
 	
 
 	public VintageGUI(){
@@ -27,34 +31,31 @@ public class VintageGUI extends JFrame{
 		VintageGUI vintage = new VintageGUI(); 
 		vintage.setVisible(true);
 	}
-	private void prepareElements() {
-		setTitle("Vintage");
-		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		setSize(new Dimension(dimension.width / 2, dimension.height / 2));
-		setLocationRelativeTo(null);
 	
-		JPanel panelArriba = preparePanelArriba();
-		JPanel panelAbajo = preparePanelAbajo();
-	
-	
-		prepareElementsMenu();
-		prepareElementsBoard();
-	
-		setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.insets = new Insets(10, 10, 10, 10);
-		// Configurar GridBagConstraints para el primer panel
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		
-		add(panelArriba, gbc);
-	
-		// Configurar GridBagConstraints para el botón cambiarBoton
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		add(panelAbajo, gbc);
+    private void prepareElements() {
+        setTitle("Vintage");
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        setSize(new Dimension(dimension.width / 2, dimension.height / 2));
+        setLocationRelativeTo(null);
 
-        
+		JLabel loLogre = new JLabel("lo logramo PIBEEEEEEE");
+        cardLayout = new CardLayout();
+        setLayout(cardLayout);
+
+        padre = new JPanel();
+        padre2 = new JPanel();
+
+        prepareElementsMenu();
+        prepareElementsBoard();
+
+        padre.setLayout(new GridLayout(2, 1));
+        padre.add(preparePanelArriba());
+        padre.add(preparePanelAbajo());
+
+		padre2.add(loLogre);
+
+        add(padre, "padre");
+        add(padre2, "padre2");
     }
 	private void prepareElementsMenu(){
 		
@@ -78,7 +79,7 @@ public class VintageGUI extends JFrame{
 		
 	}
 
-	private void prepareElementsBoard(){
+	private JPanel prepareElementsBoard(){
 		JPanel padre = new JPanel();
 		board = new JPanel[8][8];
 		for (int i = 0; i < 8; i++) {
@@ -87,6 +88,7 @@ public class VintageGUI extends JFrame{
                 padre.add(board[i][j]);
             }
         }
+		return padre;
 
 	}
 
@@ -144,7 +146,14 @@ public class VintageGUI extends JFrame{
             }
         };
 		this.addWindowListener(oyenteDeSalidaW);
-		
+
+		ActionListener oyenteDeInicio;
+		oyenteDeInicio = new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				cambio();
+			}
+		};
+		nuevaPartida.addActionListener(oyenteDeInicio);
 	}
 
 	private void prepareActionsMenu(){
@@ -176,7 +185,7 @@ public class VintageGUI extends JFrame{
 		ActionListener oyenteDeNuevo;
 		oyenteDeNuevo = new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				
+
 			}
 		};
 		nuevo.addActionListener(oyenteDeNuevo);
@@ -194,20 +203,12 @@ public class VintageGUI extends JFrame{
 		}
 	}
 
-	private void cambioDePanel(){		
-        // Cambiar entre los paneles al hacer clic en el botón
-		if (getContentPane().getComponent(0) == padre) {
-			getContentPane().remove(padre);
-			getContentPane().add(padre);
-		} else {
-			getContentPane().remove(padre2);
-			getContentPane().add(padre2, BorderLayout.CENTER);
-		}
+	private void cambio(){		
+        cardLayout.next(getContentPane());
 
-		// Actualizar la interfaz
-		revalidate();
-		repaint();
-
+        // Actualizar la interfaz
+        revalidate();
+        repaint();
 	}
 
 	private void fileChoiceAbrir(){
