@@ -38,7 +38,6 @@ public class VintageGUI extends JFrame{
         setSize(new Dimension(dimension.width / 2, dimension.height / 2));
         setLocationRelativeTo(null);
 
-		JLabel loLogre = new JLabel("lo logramo PIBEEEEEEE");
         cardLayout = new CardLayout();
         setLayout(cardLayout);
 
@@ -52,9 +51,24 @@ public class VintageGUI extends JFrame{
         padre.add(preparePanelArriba());
         padre.add(preparePanelAbajo());
 
-		padre2.add(loLogre);
-		volver = new JButton("volver");
-		padre2.add(volver);
+		padre2.setLayout(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.fill = GridBagConstraints.BOTH;
+		constraints.weightx = 1.0; 
+    	constraints.weighty = 0.7;  
+ 
+
+		padre2.add(prepareElementsBoard(),constraints);
+
+        constraints.gridy = 1;
+		constraints.fill = GridBagConstraints.BOTH;
+		constraints.weightx = 1.0;
+		constraints.weighty = 0.3;
+
+		padre2.add(prepareBoardInfo(),constraints);
+		
 
         add(padre, "padre");
         add(padre2, "padre2");
@@ -82,16 +96,25 @@ public class VintageGUI extends JFrame{
 	}
 
 	private JPanel prepareElementsBoard(){
-		JPanel padre = new JPanel();
+		JPanel panel = new JPanel();
 		board = new JPanel[8][8];
+		panel.setLayout(new GridLayout(8,8,2,2));
 		for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 board[i][j] = new JPanel(); 
-                padre.add(board[i][j]);
+				board[i][j].setBackground(new Color(15,15,15));
+                panel.add(board[i][j]);
             }
         }
-		return padre;
+		return panel;
 
+	}
+
+	private JPanel prepareBoardInfo(){
+		JPanel panel = new JPanel();
+		volver = new JButton("volver");
+		panel.add(volver);
+		return panel;
 	}
 
 	private JPanel preparePanelAbajo(){
