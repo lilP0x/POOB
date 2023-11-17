@@ -12,7 +12,7 @@ import java.io.File;
 
 public class VintageGUI extends JFrame{
 
-	private JMenuItem salir,salvar,abrir,nuevo;
+	private JMenuItem salir,salvar,abrir,nuevo,color;
 	private JMenu opciones;
 	private JMenuBar menu;
 	private JFileChooser fileChooser;
@@ -20,6 +20,7 @@ public class VintageGUI extends JFrame{
 	private JButton continuar, nuevaPartida,volver;
 	private JPanel padre, padre2;
 	private CardLayout cardLayout;
+	private Color color1;
 
 	
 
@@ -37,6 +38,7 @@ public class VintageGUI extends JFrame{
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(new Dimension(dimension.width / 2, dimension.height / 2));
         setLocationRelativeTo(null);
+		color1 = new Color(25,25,25,25);
 
         cardLayout = new CardLayout();
         setLayout(cardLayout);
@@ -81,11 +83,13 @@ public class VintageGUI extends JFrame{
 		nuevo = new JMenuItem("nuevo");
 		salvar = new JMenuItem("salvar");
 		salir = new JMenuItem("salir");
+		color = new JMenuItem("color");
 		fileChooser = new JFileChooser();
 		opciones.add(nuevo);
 		opciones.add(abrir);
 		opciones.add(salvar);
 		opciones.add(salir);
+		opciones.add(color);
 		menu.add(opciones);
 		setJMenuBar(menu);
 		prepareActionsMenu();
@@ -95,19 +99,29 @@ public class VintageGUI extends JFrame{
 		
 	}
 
-	private JPanel prepareElementsBoard(){
+	private JPanel prepareElementsBoard() {
 		JPanel panel = new JPanel();
 		board = new JPanel[8][8];
 		panel.setLayout(new GridLayout(8,8,2,2));
 		for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                board[i][j] = new JPanel(); 
-				board[i][j].setBackground(new Color(15,15,15));
-                panel.add(board[i][j]);
-            }
-        }
+			for (int j = 0; j < 8; j++) {
+				board[i][j] = new JPanel(); 
+				board[i][j].setBackground(new Color(25,25,25,25));
+				panel.add(board[i][j]);
+			}
+		}
 		return panel;
+	}
+	
 
+	private void updateBoardColor() {
+		if (color1 != null) {
+			for (int i = 0; i < 8; i++) {
+				for (int j = 0; j < 8; j++) {
+					board[i][j].setBackground(color1);
+				}
+			}
+		}
 	}
 
 	private JPanel prepareBoardInfo(){
@@ -223,6 +237,14 @@ public class VintageGUI extends JFrame{
 			}
 		};
 		nuevo.addActionListener(oyenteDeNuevo);
+
+		ActionListener oyenteDeColor;
+		oyenteDeColor = new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				cambioColor();
+			}
+		};
+		color.addActionListener(oyenteDeColor);
 	
 	}
 
@@ -254,6 +276,12 @@ public class VintageGUI extends JFrame{
             JOptionPane.showMessageDialog(this, "La funcion esta en desarrollo","Abrir archivo",JOptionPane.INFORMATION_MESSAGE);
         }
 
+	}
+
+	private void cambioColor(){
+
+		color1 = JColorChooser.showDialog(this, "Choose a Color", color1);
+		updateBoardColor();
 	}
 
 	private void fileChoiceSalvar(){
