@@ -1,15 +1,18 @@
 public class Vintage{
-	private int[][] size;
+	private int width;
+	private int length;
 	private Board board;
 
 	public Vintage(	int row, int column){
+		width = row;
+		length = column;
 		board = new Board();
 	
 	}
 
 	public boolean play(int rowI, int columI, int rowF, int columnF) {
 		
-		return board.play();	
+		return board.play(rowI,columI,rowF,columnF);	
 	}
 
 	public char[][] board(){
@@ -18,8 +21,15 @@ public class Vintage{
 	}
 
 	public int[] jewels(){
-		return 0;
 		
+		return board.getJewels();
+		
+	}
+
+	public int getPuntuation(){
+
+		return board.getPuntuation();
+
 	}
 
 }

@@ -2,6 +2,7 @@ public class Jewel{
 
 	private Color color;
 	private char type;
+	private int positon;
 
 	public Jewel(){
 
@@ -13,5 +14,4 @@ public class Jewel{
 		return 0;
 	}
 
-	
 }

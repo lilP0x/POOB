@@ -157,7 +157,8 @@ public class VintageGUI extends JFrame{
 	}
 
 	private void refresh(){
-
+		
+		
 
 	}
 
