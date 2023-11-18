@@ -6,7 +6,7 @@ public class Vintage{
 	public Vintage(	int row, int column){
 		width = row;
 		length = column;
-		board = new Board();
+		board = new Board(8,8,"g");
 	
 	}
 
@@ -20,7 +20,7 @@ public class Vintage{
 		return null;
 	}
 
-	public int[] jewels(){
+	public Box[][] jewels(){
 		
 		return board.getJewels();
 		

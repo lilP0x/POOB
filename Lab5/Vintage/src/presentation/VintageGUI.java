@@ -3,6 +3,11 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.html.parser.ParserDelegator;
+import java.io.IOException;
+import java.awt.FontFormatException;
+import java.io.InputStream;
+import java.io.FileInputStream;
+import java.net.URL;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -17,6 +22,7 @@ public class VintageGUI extends JFrame{
 	private JMenuBar menu;
 	private JFileChooser fileChooser;
 	private JPanel[][] board;
+	private JPanel[][] boardInicial;
 	private JButton continuar, nuevaPartida,volver;
 	private JPanel padre, padre2;
 	private CardLayout cardLayout;
@@ -27,11 +33,14 @@ public class VintageGUI extends JFrame{
 	public VintageGUI(){
 		prepareElements();
 		prepareActions();
+		
 	}
 	public static void main(String [] args){
 		VintageGUI vintage = new VintageGUI(); 
 		vintage.setVisible(true);
 	}
+	
+
 	
     private void prepareElements() {
         setTitle("Vintage");
@@ -49,8 +58,9 @@ public class VintageGUI extends JFrame{
         prepareElementsMenu();
         prepareElementsBoard();
 
-        padre.setLayout(new GridLayout(2, 1));
+        padre.setLayout(new GridLayout(3, 1));
         padre.add(preparePanelArriba());
+	padre.add(preparePanelMedio());
         padre.add(preparePanelAbajo());
 
 		padre2.setLayout(new GridBagLayout());
@@ -93,10 +103,6 @@ public class VintageGUI extends JFrame{
 		menu.add(opciones);
 		setJMenuBar(menu);
 		prepareActionsMenu();
-		//BufferedImage logo = ImageIO.read(new File("/resursos/colorful-candy-background-vector.jpg"));
-        //JLabel label = new JLabel(new ImageIcon(logo));
-		//add(label);
-		
 	}
 
 	private JPanel prepareElementsBoard() {
@@ -110,6 +116,7 @@ public class VintageGUI extends JFrame{
 				panel.add(board[i][j]);
 			}
 		}
+		boardInicial = board;
 		return panel;
 	}
 	
@@ -126,54 +133,113 @@ public class VintageGUI extends JFrame{
 
 	private JPanel prepareBoardInfo(){
 		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+        	constraints.gridx = 0;
+        	constraints.gridy = 5;
+        	constraints.insets = new Insets(1, 30, 1, 30);
+
 		volver = new JButton("volver");
-		panel.add(volver);
+		panel.add(volver, constraints);		
+		JButton reiniciar = new JButton("reiniciar");
+		constraints.gridx = 2;
+		panel.add(reiniciar, constraints);
+		panel.setBackground(new Color(255,128,0));
 		return panel;
 	}
+
+	private JPanel preparePanelMedio(){
+		JPanel panel = new JPanel(new BorderLayout());
+        ImageIcon originalIcon = createImageIcon("feo.png");
+
+        if (originalIcon != null) {
+            int width = originalIcon.getIconWidth();
+            int height = originalIcon.getIconHeight();
+
+            int maxSize = 150;
+
+            if (width > maxSize || height > maxSize) {
+                if (width > height) {
+                    height = maxSize * height / width;
+                    width = maxSize;
+                } else {
+                    width = maxSize * width / height;
+                    height = maxSize;
+                }
+            }
+
+            Image scaledImage = originalIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+            JLabel imageLabel = new JLabel(scaledIcon);
+            imageLabel.setHorizontalAlignment(JLabel.CENTER);
+            imageLabel.setVerticalAlignment(JLabel.CENTER);
+
+            panel.add(imageLabel, BorderLayout.CENTER);
+          
+        } 
+	panel.setBackground(new Color(255,128,0));
+	return panel;
+}
 
 	private JPanel preparePanelAbajo(){
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.insets = new Insets(1, 0, 1, 0); // Espacio vertical entre los componentes
+        constraints.gridy = 5;
+        constraints.insets = new Insets(1, 30, 1, 30); 
 
         nuevaPartida = new JButton("Nuevo juego");
         nuevaPartida.setFont(new Font("Courier New", Font.PLAIN, 12));
         nuevaPartida.setBackground(new Color(150, 200, 100));
-        nuevaPartida.setForeground(Color.WHITE);
+        nuevaPartida.setForeground(Color.black);
+
         continuar = new JButton("Continuar");
         continuar.setFont(new Font("Courier New", Font.PLAIN, 12));
-        continuar.setBackground(new Color(150, 200, 100));
-        continuar.setForeground(Color.WHITE);
+        continuar.setBackground(new Color(255, 250, 205));
+        continuar.setForeground(Color.black);
 
         panel.add(nuevaPartida, constraints);
 
-        constraints.gridy = 1;
-        panel.add(continuar, constraints);
-
-		return panel;
-	}
-
-	private JPanel preparePanelArriba(){
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridBagLayout());
-		GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 1;
-        constraints.gridy = 0;
-        constraints.insets = new Insets(1, 0, 1, 0); 
-
-		JLabel titulo = new JLabel("Vintage");
-		panel.add(titulo,constraints);
+	constraints.gridy = 5;
+        panel.add(continuar, constraints);
+	panel.setBackground(new Color(255,128,0));
 
 		return panel;
 	}
+
+	private JPanel preparePanelArriba() {
+    	Font customFont = null;
+
+   	 try {
+        	customFont = Font.createFont(Font.TRUETYPE_FONT, new File("tommy.ttf")).deriveFont(60f);
+
+    	} catch (IOException | FontFormatException e) {
+        	customFont = new Font("Courier New", Font.PLAIN, 60);
+    	}
+
+    	JPanel panel = new JPanel();
+    	panel.setLayout(new GridBagLayout());
+    	GridBagConstraints constraints = new GridBagConstraints();
+    	constraints.gridx = 0;
+   	constraints.gridy = 0;
+    	constraints.insets = new Insets(10, 0, 10, 0);
+
+    	JLabel titulo = new JLabel("Vintage");
+    	if (customFont != null) {
+        	titulo.setFont(customFont);
+    	}
+    	panel.add(titulo, constraints);
+	panel.setBackground(new Color(255,128,0));
+
+    return panel;
+}
+
 
 	private void refresh(){
-		
-		
-
+		board = boardInicial;
 	}
 
 	private void prepareActions(){
@@ -262,7 +328,7 @@ public class VintageGUI extends JFrame{
 	private void cambio(){		
         cardLayout.next(getContentPane());
 
-        // Actualizar la interfaz
+    
         revalidate();
         repaint();
 	}
@@ -302,4 +368,13 @@ public class VintageGUI extends JFrame{
             setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
 	}
+	protected ImageIcon createImageIcon(String path) {
+        URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("No se pudo encontrar el archivo: " + path);
+            return null;
+        }
+    }
 }

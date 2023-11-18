@@ -3,7 +3,7 @@ public class Box{
 	private int[][] positon;
 
 	public Box(){
-		gema = new jewel();
+		gema = new Jewel();
 	}
 
 	public boolean play(){

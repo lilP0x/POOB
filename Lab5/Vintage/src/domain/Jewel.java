@@ -1,3 +1,4 @@
+import java.awt.Color;
 public class Jewel{
 
 	private Color color;
@@ -11,7 +12,11 @@ public class Jewel{
 
 	public int[][] getPositon(){
 
-		return 0;
+		return null;
+	}
+	public boolean play(){
+
+		return true;
 	}
 
 }
