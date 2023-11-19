@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Vintage
+comment1.params=row\ column
+comment1.target=Vintage(int,\ int)
+comment2.params=rowI\ columI\ rowF\ columnF
+comment2.target=boolean\ play(int,\ int,\ int,\ int)
+comment3.params=
+comment3.target=char[][]\ board()
+comment4.params=
+comment4.target=int[]\ jewels()
+comment5.params=
+comment5.target=int\ getPuntuation()
+comment6.params=
+comment6.target=void\ printBoard()
+numComments=7

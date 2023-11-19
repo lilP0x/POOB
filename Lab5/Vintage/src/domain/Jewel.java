@@ -1,22 +1,18 @@
+
+package domain;
 import java.awt.Color;
 public class Jewel{
 
-	private Color color;
-	private char type;
-	private int positon;
+	protected char type;
+	protected boolean change = false;
 
 	public Jewel(){
 
-
 	}
 
-	public int[][] getPositon(){
-
-		return null;
+	public char getType(){
+		return type;
 	}
-	public boolean play(){
-
-		return true;
-	}
+	
 
 }
