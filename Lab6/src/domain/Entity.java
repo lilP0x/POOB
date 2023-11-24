@@ -22,7 +22,7 @@ public interface Entity{
   
   default Color getColor(){
       if (this instanceof Flower) {
-            return Color.red; 
+            return Color.blue; 
         } else if (this instanceof Food) {
             return Color.orange; 
         } else {

@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Lentas
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Hambrientas\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=colonyy\ row\ column
+comment1.target=Lentas(Colony,\ int,\ int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Hambrientas\r\n
+comment2.params=
+comment2.target=void\ move()
+comment3.params=coll
+comment3.target=void\ setColor(java.awt.Color)
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=java.util.ArrayList\ food()
+numComments=6

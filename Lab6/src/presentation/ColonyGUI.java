@@ -1,6 +1,6 @@
 package presentation;
 import domain.*;
-
+import java.io.File;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,7 +16,7 @@ public class ColonyGUI extends JFrame{
     private Colony colony;
     private JMenuBar menu;
     private JMenu menus;
-    private JMenuItem importar,exportar,guardarComo, nuevo, guardar, salir;
+    private JMenuItem abrir,importar,exportar,guardarComo, nuevo, guardar, salir;
 
 
     private ColonyGUI() {
@@ -42,12 +42,14 @@ public class ColonyGUI extends JFrame{
         menu = new JMenuBar();
         menus = new JMenu("Archivo");
         importar = new JMenuItem("Importar");
+        abrir = new JMenuItem("Abrir");
         exportar = new JMenuItem("Exportar");
         guardarComo = new JMenuItem("Guardar como");
         nuevo = new JMenuItem("Nuevo");
         guardar = new JMenuItem("Guardar");
         salir = new JMenuItem("salir");
         menus.add(nuevo);
+        menus.add(abrir);
         menus.add(importar);
         menus.add(exportar);
         menus.add(guardar);
@@ -55,8 +57,6 @@ public class ColonyGUI extends JFrame{
         menus.add(salir);
         menu.add(menus);
         setJMenuBar(menu);
-        
-
     }
 
     private void prepareActions(){
@@ -69,6 +69,59 @@ public class ColonyGUI extends JFrame{
         }
         );
     }
+
+    private void prepareActionsMenu() {
+        ActionListener oyenteSave;
+        oyenteSave = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    salvar(file);
+                } catch (ColonyException ex) {
+
+                }
+            }
+        };
+        guardar.addActionListener(oyenteSave);
+
+        ActionListener oyenteImport;
+        oyenteImport = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    importar(file);
+                } catch (ColonyException ex) {
+                
+                }
+            }
+        };
+        importar.addActionListener(oyenteImport);
+
+        ActionListener oyenteAbrir;
+        oyenteAbrir = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    abrir(file);
+                } catch (ColonyException ex) {
+                
+                }
+            }
+        };
+        nuevo.addActionListener(oyenteAbrir);
+
+        ActionListener oyenteExport;
+        oyenteExport = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    exportar(file);
+                } catch (ColonyException ex) {
+                    
+                }
+            }
+        };
+        exportar.addActionListener(oyenteExport);
+    }
+
+   
+
 
     private void buttonTicTacAction() {
         colony.ticTac();

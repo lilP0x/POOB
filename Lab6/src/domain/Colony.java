@@ -1,5 +1,6 @@
 package domain;
 import java.util.*;
+import java.io.File;
 
 
 /*No olviden adicionar la documentacion*/
@@ -22,6 +23,7 @@ public class Colony{
         setEntity(1,1,new Food());
         setEntity(0,8,new Flower());
         setEntity(0,10,new Flower());
+        setEntity(20,10,new Flower());
         someEntities();
     }
 
@@ -43,7 +45,8 @@ public class Colony{
         Ant molt = new Ant(this, 15, 15); 
         Hambrientas rachel = new Hambrientas(this, 10, 20);
         Hambrientas monica = new Hambrientas(this, 20, 15); 
-        
+        Lentas rache = new Lentas(this, 15, 25);
+        Lentas monic = new Lentas(this, 23, 15);         
     }
     
     public void ticTac(){
@@ -73,7 +76,52 @@ public class Colony{
             }
         }
         
-    }    
+    }
+      
+   /**
+ * Placeholder method for the 'open' operation.
+ *
+ * @param file The file to be opened.
+ * @throws ColonyException Thrown to indicate that the 'open' option is under construction.
+ *                         Includes a message specifying the operation and file details.
+ */
+public void open(File file) throws ColonyException {
+    throw new ColonyException("Option 'open' under construction. File: " + file.getName());
+}
+
+/**
+ * Placeholder method for the 'save' operation.
+ *
+ * @param file The file to be saved.
+ * @throws ColonyException Thrown to indicate that the 'save' option is under construction.
+ *                         Includes a message specifying the operation and file details.
+ */
+public void save(File file) throws ColonyException {
+    throw new ColonyException("Option 'save' under construction. File: " + file.getName());
+}
+
+/**
+ * Placeholder method for the 'import' operation.
+ *
+ * @param file The file to be imported.
+ * @throws ColonyException Thrown to indicate that the 'import' option is under construction.
+ *                         Includes a message specifying the operation and file details.
+ */
+public void importFile(File file) throws ColonyException {
+    throw new ColonyException("Option 'import' under construction. File: " + file.getName());
+}
+
+/**
+ * Placeholder method for the 'export' operation.
+ *
+ * @param file The file to be exported.
+ * @throws ColonyException Thrown to indicate that the 'export' option is under construction.
+ *                         Includes a message specifying the operation and file details.
+ */
+public void export(File file) throws ColonyException {
+    throw new ColonyException("Option 'export' under construction. File: " + file.getName());
+}
+
     
     private int[] food(int i,int j){
         int [] food = new int[2];
