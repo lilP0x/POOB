@@ -14,6 +14,10 @@ public class ColonyGUI extends JFrame{
     private JPanel panelControl;
     private PhotoColony photo;
     private Colony colony;
+    private JMenuBar menu;
+    private JMenu menus;
+    private JMenuItem importar,exportar,guardarComo, nuevo, guardar, salir;
+
 
     private ColonyGUI() {
         colony=new Colony();
@@ -31,6 +35,28 @@ public class ColonyGUI extends JFrame{
         setSize(new Dimension(SIDE*SIZE,SIDE*SIZE+50)); 
         setResizable(false);
         photo.repaint();
+        prepareElementsMenu();
+    }
+
+    private void prepareElementsMenu(){
+        menu = new JMenuBar();
+        menus = new JMenu("Archivo");
+        importar = new JMenuItem("Importar");
+        exportar = new JMenuItem("Exportar");
+        guardarComo = new JMenuItem("Guardar como");
+        nuevo = new JMenuItem("Nuevo");
+        guardar = new JMenuItem("Guardar");
+        salir = new JMenuItem("salir");
+        menus.add(nuevo);
+        menus.add(importar);
+        menus.add(exportar);
+        menus.add(guardar);
+        menus.add(guardarComo);
+        menus.add(salir);
+        menu.add(menus);
+        setJMenuBar(menu);
+        
+
     }
 
     private void prepareActions(){

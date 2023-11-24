@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Hambrientas extends Ant 
 {
     protected char nextState;
-    protected Color color;
     private Colony colony;
     protected int row,column;
     protected char soy = 'S';
